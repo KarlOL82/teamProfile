@@ -32,16 +32,11 @@ inquirer
             type: "input",
             message: "What is your manager's office number",
         },
-        // {
-        //     name: "teamMember",
-        //     type: "choice",
-        //     choices: ["Engineer", "Intern", "Done adding team members"],
-        //     message: "What type of team member would you like to add?",
-        // }
+        
 
     ]).then((response)=>{
         console.log(response);
-        // response.name 
+         
         const {name, id, email, office} = response;
 
         const manager =new Manager (name, id, email, office);
@@ -59,9 +54,21 @@ inquirer
 
 teamRoster.push(addManger);
 
-promptOtherQues();
-    });
+promptOtherQues(); 
 }
+inquirer
+    .prompt([
+        {
+            name: "teamMember",
+            type: "choice",
+            choices: ["Engineer", "Intern", "Done adding team members"],
+            message: "What type of team member would you like to add?",
+        }
+    ])
+        };
+    });
+    
+
 
     const engineer = inquirer
     .prompt([
@@ -97,3 +104,6 @@ promptOtherQues();
 
 
       startCollectingData();
+    
+
+    
