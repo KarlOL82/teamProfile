@@ -1,7 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
 const generateHtml = require("./src/generateHtml");
-const team = require("./src/team");
+// const team = require("./src/team");
 const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
@@ -32,16 +32,17 @@ inquirer
             type: "input",
             message: "What is your manager's office number",
         },
+        promptOtherQues()
         
 
-    ]).then((response)=>{
+    ]).then((response) => {
         console.log(response);
          
         const {name, id, email, office} = response;
 
         const manager =new Manager (name, id, email, office);
 
-        const addManger ={ 
+        const addManager ={ 
             role: manager.getRole(),
             name: manager.getName(),
             id: manager.getId(),
@@ -50,12 +51,12 @@ inquirer
         
 
         }
+    })
 
+teamRoster.push(addManager);
 
-teamRoster.push(addManger);
-
-promptOtherQues(); 
-}
+function promptOtherQues() {
+ 
 inquirer
     .prompt([
         {
@@ -64,13 +65,13 @@ inquirer
             choices: ["Engineer", "Intern", "Done adding team members"],
             message: "What type of team member would you like to add?",
         }
-    ])
-        };
-    });
+    ]);
+}    
+        
     
 
 
-    const engineer = inquirer
+    const Engineer = inquirer
     .prompt([
         {
             name: "github",
@@ -78,19 +79,51 @@ inquirer
             message: "What is the employee's GitHub username?"
         }
 
-    ]);
+    ]).then((response)=>{
+        console.log(response);
+         
+        const {name, id, email, github} = response;
+
+        const engineer =new Engineer (name, id, email, github);
+
+        const addEngineer = { 
+            role: engineer.getRole(),
+            name: engineer.getName(),
+            id: engineer.getId(),
+            email: engineer.getEmail(),
+            extra: engineer.getGithub(),
+        
+
+        }
+        teamRoster.push(addEngineer);
 
     const intern = inquirer
     .prompt([
         {
             name: "school",
             type: "input",
-            message: "What is the name of the emplyee's school?"
+            message: "What is the name of the employee's school?"
         
         }
 
 
-    ])
+    ]).then((response)=>{
+        console.log(response);
+         
+        const {name, id, email, school} = response;
+
+        const intern =new Intern (name, id, email, github);
+
+        const addIntern = { 
+            role: intern.getRole(),
+            name: intern.getName(),
+            id: intern.getId(),
+            email: intern.getEmail(),
+            extra: intern.getSchool(),
+        
+
+        }
+        teamRoster.push(addIntern)
 
     .then((answer) => {
         const newFile = generateHtml(answer);
@@ -106,4 +139,6 @@ inquirer
       startCollectingData();
     
 
-    
+    })
+})
+}
