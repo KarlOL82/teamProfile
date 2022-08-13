@@ -1,3 +1,3 @@
-index = require("index.js");
+// index = require("index.js");
 
-generateHtml();
+// generateHtml();
