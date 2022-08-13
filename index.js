@@ -9,47 +9,50 @@ const Intern = require("./lib/intern");
 const teamRoster = [];
 
 function startCollectingData() {
-  const managerQ = inquirer
-    .prompt([
-      {
-        name: "name",
-        type: "input",
-        message: "What is your team manager's name?",
-      },
-      {
-        name: "id",
-        type: "input",
-        message: "What is your manager's ID?",
-      },
-      {
-        name: "email",
-        type: "input",
-        message: "What is your manager's email address?",
-      },
-      {
-        name: "office",
-        type: "input",
-        message: "What is your manager's office number?",
-      },
-    ])
-    .then((answer) => {
-      console.log(answer.managerQ);
+  function managerQ() {
+    managerData = inquirer
+      .prompt([
+        {
+          name: "name",
+          type: "input",
+          message: "What is your team manager's name?",
+        },
+        {
+          name: "id",
+          type: "input",
+          message: "What is your manager's ID?",
+        },
+        {
+          name: "email",
+          type: "input",
+          message: "What is your manager's email address?",
+        },
+        {
+          name: "office",
+          type: "input",
+          message: "What is your manager's office number?",
+        },
+      ])
+      .then((answer) => {
+        console.log(answer.managerQ);
 
-      const { name, id, email, office } = answer;
+        const { name, id, email, office } = answer;
 
-      const manager = new Manager(name, id, email, office);
+        const manager = new Manager(name, id, email, office);
 
-      const addManager = {
-        role: manager.getRole(),
-        name: manager.getName(),
-        id: manager.getId(),
-        email: manager.getEmail(),
-        extra: manager.getOffice(),
-      };
+        const addManager = {
+          role: manager.getRole(),
+          name: manager.getName(),
+          id: manager.getId(),
+          email: manager.getEmail(),
+          extra: manager.getOffice(),
+        };
 
-      teamRoster.push(addManager);
-      promptOtherQues();
-    });
+        teamRoster.push(addManager);
+      });
+  }
+  promptOtherQues();
+
   function promptOtherQues() {
     inquirer.prompt([
       {
@@ -126,13 +129,11 @@ function startCollectingData() {
         teamRoster.push(addIntern);
       });
     promptOtherQues();
-      if (promptOtherQues.answer !== "Engineer" || "Intern") {
-        generateHtml()
-      };
+    if (promptOtherQues.answer !== "Engineer" || "Intern") {
+      generateHtml();
+    }
 
-      Employee.append(teamRoster)
-
-    .then((answer) => {
+    Employee.append(teamRoster).then((answer) => {
       const newFile = generateHtml(answer);
 
       fs.writeFile("./dist/myTeam.html", newFile, function (err) {
