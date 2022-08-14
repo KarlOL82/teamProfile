@@ -1,0 +1,26 @@
+body {
+    background-color: antiquewhite;
+}
+
+#cardContainer {
+    justify-content: center;
+}
+
+
+
+#header {
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
+
+.card {
+    display: flexbox;
+    background-color: yellow;
+    padding: 20px;
+    text-align: center;
+}
+
+#empCard {
+    background-color: lightskyblue;
+}

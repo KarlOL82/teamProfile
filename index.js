@@ -8,133 +8,164 @@ const Intern = require("./lib/intern");
 
 const teamRoster = [];
 
-function startCollectingData() {
-  function managerQ() {
-    managerData = inquirer
-      .prompt([
-        {
-          name: "name",
-          type: "input",
-          message: "What is your team manager's name?",
-        },
-        {
-          name: "id",
-          type: "input",
-          message: "What is your manager's ID?",
-        },
-        {
-          name: "email",
-          type: "input",
-          message: "What is your manager's email address?",
-        },
-        {
-          name: "office",
-          type: "input",
-          message: "What is your manager's office number?",
-        },
-      ])
-      .then((answer) => {
-        console.log(answer.managerQ);
+managerQ();
 
-        const { name, id, email, office } = answer;
+function managerQ() {
+  managerData = inquirer
+    .prompt([
+      {
+        name: "name",
+        type: "input",
+        message: "What is your team manager's name?",
+      },
+      {
+        name: "id",
+        type: "input",
+        message: "What is your manager's ID?",
+      },
+      {
+        name: "email",
+        type: "input",
+        message: "What is your manager's email address?",
+      },
+      {
+        name: "office",
+        type: "input",
+        message: "What is your manager's office number?",
+      },
+    ])
+    .then((answers) => {
+      console.log(answers.managerQ);
 
-        const manager = new Manager(name, id, email, office);
+      const { name, id, email, office } = answers;
 
-        const addManager = {
-          role: manager.getRole(),
-          name: manager.getName(),
-          id: manager.getId(),
-          email: manager.getEmail(),
-          extra: manager.getOffice(),
-        };
+      const manager = new Manager(name, id, email, office);
 
-        teamRoster.push(addManager);
-      });
-  }
-  promptOtherQues();
+      const addManager = {
+        role: manager.getRole(),
+        name: manager.getName(),
+        id: manager.getId(),
+        email: manager.getEmail(),
+        extra: manager.getOffice(),
+      };
 
-  function promptOtherQues() {
-    inquirer.prompt([
+      teamRoster.push(addManager);
+      promptOtherQues();
+    });
+}
+
+function promptOtherQues() {
+  inquirer
+    .prompt([
       {
         name: "teamMember",
-        type: "choice",
+        type: "list",
         choices: ["Engineer", "Intern", "Done adding team members"],
         message: "What type of team member would you like to add?",
       },
-    ]);
-  }
-  if (answer === "Engineer") {
-    engineerQ();
-  }
-  if (answer === "Intern") {
-    internQ();
-  } else {
-    generateHtml();
-  }
+    ])
+    .then((answers) => {
+      if (answers === "Engineer") {
+        engineerQ();
+      }
+      if (answers === "Intern") {
+        internQ();
+      } else {
+        generateHtml();
+      }
+    });
+}
+function engineerQ() {
+  engineerData = inquirer
+    .prompt([
+      {
+        name: "github",
+        type: "input",
+        message: "What is the employee's GitHub username?",
+      },
+    ])
 
-  function engineerQ() {
-    engineerData = inquirer
-      .prompt([
-        {
-          name: "github",
-          type: "input",
-          message: "What is the employee's GitHub username?",
-        },
-      ])
+    .then((answers) => {
+      console.log(answers.engineerQ);
 
-      .then((answer) => {
-        console.log(answer.engineerQ);
+      const { name, id, email, github } = answers;
 
-        const { name, id, email, github } = answer;
+      const engineer = new Engineer(name, id, email, github);
 
-        const engineer = new Engineer(name, id, email, github);
+      const addEngineer = {
+        role: engineer.getRole(),
+        name: engineer.getName(),
+        id: engineer.getId(),
+        email: engineer.getEmail(),
+        extra: engineer.getGithub(),
+      };
 
-        const addEngineer = {
-          role: engineer.getRole(),
-          name: engineer.getName(),
-          id: engineer.getId(),
-          email: engineer.getEmail(),
-          extra: engineer.getGithub(),
-        };
+      teamRoster.push(addEngineer);
 
-        teamRoster.push(addEngineer);
-      });
-  }
-  promptOtherQues();
+      promptOtherQues();
+      if (promptOtherQues.answer !== "Engineer" || "Intern") {
+        generateHtml();
+      }
+    });
+}
 
-  function internQ() {
-    internData = inquirer
-      .prompt([
-        {
-          name: "school",
-          type: "input",
-          message: "What is the name of the employee's school?",
-        },
-      ])
-      .then((answer) => {
-        console.log(answer.internQ);
+function internQ() {
+  internData = inquirer
+    .prompt([
+      {
+        name: "school",
+        type: "input",
+        message: "What is the name of the employee's school?",
+      },
+    ])
+    .then((answers) => {
+      const { name, id, email, school } = answers;
 
-        const { name, id, email, school } = response;
+      const intern = new Intern(name, id, email, school);
 
-        const intern = new Intern(name, id, email, school);
+      const addIntern = {
+        role: intern.getRole(),
+        name: intern.getName(),
+        id: intern.getId(),
+        email: intern.getEmail(),
+        extra: intern.getSchool(),
+      };
 
-        const addIntern = {
-          role: intern.getRole(),
-          name: intern.getName(),
-          id: intern.getId(),
-          email: intern.getEmail(),
-          extra: intern.getSchool(),
-        };
+      teamRoster.push(addIntern);
+      promptOtherQues();
+      if (promptOtherQues.answers !== "Engineer" || "Intern") {
+        generateHtml();
+      }
+    });
 
-        teamRoster.push(addIntern);
-      });
-    promptOtherQues();
-    if (promptOtherQues.answer !== "Engineer" || "Intern") {
-      generateHtml();
+  function getExtra() {
+    if (getRole === "Engineer") {
+      return getGithub();
     }
+    if (getRole === "Intern") {
+      return getSchool();
+    }
+    if (getRole === "Manager") {
+      return getOffice();
+    }
+  }
+  startCollectingData();
+  generateHtml()
+  function startCollectingData() {
+    const { name, id, email, role, extra } = answers;
+    const employee = new Employee(name, id, email, role, extra);
+    // const role = Employee.getRole();
 
-    Employee.append(teamRoster).then((answer) => {
-      const newFile = generateHtml(answer);
+    const addEmployee = {
+      role: employee.getRole(),
+      name: employee.getName(),
+      id: employee.getId(),
+      email: employee.getEmail(),
+      extra: employee.getExtra(),
+    };
+
+    teamRoster.push(addEmployee).then((answers) => {
+      const newFile = generateHtml(answers);
 
       fs.writeFile("./dist/myTeam.html", newFile, function (err) {
         if (err) throw err;
@@ -145,4 +176,6 @@ function startCollectingData() {
   }
 }
 
-startCollectingData();
+
+
+
