@@ -50,6 +50,7 @@ function managerQ() {
       };
 
       teamRoster.push(addManager);
+      startCollectingData();
       promptOtherQues();
     });
 }
@@ -65,14 +66,14 @@ function promptOtherQues() {
       },
     ])
     .then((answers) => {
-      if (answers === "Engineer") {
+      if (answers.teamMember === "Engineer") {
         engineerQ();
       }
-      if (answers === "Intern") {
+      if (answers.teamMember === "Intern") {
         internQ();
-      } else {
-        generateHtml();
-      }
+      } 
+        startCollectingData();
+      
     });
 }
 function engineerQ() {
@@ -84,7 +85,6 @@ function engineerQ() {
         message: "What is the employee's GitHub username?",
       },
     ])
-
     .then((answers) => {
       console.log(answers.engineerQ);
 
@@ -104,7 +104,7 @@ function engineerQ() {
 
       promptOtherQues();
       if (promptOtherQues.answer !== "Engineer" || "Intern") {
-        generateHtml();
+        startCollectingData();
       }
     });
 }
@@ -134,50 +134,46 @@ function internQ() {
       teamRoster.push(addIntern);
       promptOtherQues();
       if (promptOtherQues.answers !== "Engineer" || "Intern") {
-        generateHtml();
+        startCollectingData();
       }
     });
-
-  function getExtra() {
-    if (getRole === "Engineer") {
-      return getGithub();
-    }
-    if (getRole === "Intern") {
-      return getSchool();
-    }
-    if (getRole === "Manager") {
-      return getOffice();
-    }
-  }
-  startCollectingData();
-  generateHtml()
-  function startCollectingData() {
-    const { name, id, email, role, extra } = answers;
-    const employee = new Employee(name, id, email, role, extra);
-    // const role = Employee.getRole();
-
-    const addEmployee = {
-      role: employee.getRole(),
-      name: employee.getName(),
-      id: employee.getId(),
-      email: employee.getEmail(),
-      extra: employee.getExtra(),
-    };
-
-    teamRoster.push(addEmployee).then((answers) => {
-      const newFile = generateHtml(answers);
-
-      fs.writeFile("./dist/myTeam.html", newFile, function (err) {
-        if (err) throw err;
-        else console.log("success");
-        console.log(answer);
-      });
-    });
-  }
 }
 
+// const generateHtml()
+
+function getExtra() {
+  if (getRole === "Engineer") {
+    return getGithub();
+  }
+  if (getRole === "Intern") {
+    return getSchool();
+  }
+  if (getRole === "Manager") {
+    return getOffice();
+  }
+}
+// startCollectingData();
 // module.exports = teamRoster[(Employee)];
+// const { name, id, email, role, extra } = answers;
+// const employee = new Employee(name, id, email, role, extra);
+// // const role = Employee.getRole();
 
+// const addEmployee = {
+//   role: employee.getRole(),
+//   name: employee.getName(),
+//   id: employee.getId(),
+//   email: employee.getEmail(),
+//   extra: employee.getExtra(),
+// };
 
+// teamRoster.push(addEmployee).then((answers) => {
+function startCollectingData() {
+  const newFile = generateHtml(teamRoster);
 
-
+  fs.writeFile("./dist/myTeam.html", newFile, function (err) {
+    if (err) throw err;
+    else console.log("success");
+    // console.log(answers);
+  });
+  // });
+}
