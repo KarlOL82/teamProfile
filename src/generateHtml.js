@@ -1,6 +1,35 @@
 const Employee = require("../lib/employee");
 
-function generateHtml(getNewTeamMember) {
+
+
+function addCard(data){
+   
+    const arrayOfCards = data.map( function (obj){
+
+return`
+<div class="card-body">
+<h1 class="card-title">${obj.name}</h1>
+<p class="card-text"><h4>Employee E-Badge</h4></p>
+<ul id="empCard" class="list-group list-group-flush">
+<li class="list-group-item">${obj.email}</li>
+<li class="list-group-item">${obj.id}</li>
+<li class="list-group-item">${obj.extra}</li>
+<li class="list-group-item">${obj.role}</li>
+</ul>
+<div class="card-footer">
+ Team Member
+</div>
+</div>`
+
+    }) 
+
+    return arrayOfCards.join("\n");
+
+}
+
+
+
+function generateHtml(teamRoster) {
   return`
 <!DOCTYPE html>
 <html lang="en">
@@ -22,26 +51,15 @@ function generateHtml(getNewTeamMember) {
     </div>
 
     <div id="cardContainer" class="card" style="width: 18rem;">
-        
-        <div class="card-body">
-           <h1 class="card-title">${getNewTeamMember[0]}</h1>
-          <p class="card-text"><h4>Employee E-Badge</h4></p>
-        </div>
-        <ul id="empCard" class="list-group list-group-flush">
-          <li class="list-group-item">${getNewTeamMember[1]}</li>
-          <li class="list-group-item">${getNewTeamMember[2]}</li>
-          <li class="list-group-item">${getNewTeamMember[3]}</li>
-          <li class="list-group-item">${getNewTeamMember[4]}</li>
-        </ul>
-        <div class="card-footer">
-            Team Member
-          </div>
-      </div>
+     ${addCard(teamRoster)}
     </div>
-    <script src="/teamProfile/index.js"></script>
-    <script src="./src/generateHtml.js"></script>
+    
 </body>
 </html>`;
 };
 
+
+
 module.exports = generateHtml;
+
+   

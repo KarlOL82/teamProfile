@@ -8,34 +8,33 @@ const Intern = require("./lib/intern");
 
 const teamRoster = [];
 
-managerQ();
+
 
 function managerQ() {
-  managerData = inquirer
+ inquirer
     .prompt([
       {
-        name: "name",
         type: "input",
+        name: "name",
         message: "What is your team manager's name?",
       },
       {
-        name: "id",
         type: "input",
+        name: "id",
         message: "What is your manager's ID?",
       },
       {
-        name: "email",
         type: "input",
+        name: "email",
         message: "What is your manager's email address?",
       },
       {
-        name: "office",
         type: "input",
+        name: "office",
         message: "What is your manager's office number?",
       },
-    ])
-    .then((answers) => {
-      console.log(answers.managerQ);
+    ]).then((answers) => {
+      console.log(answers);
 
       const { name, id, email, office } = answers;
 
@@ -170,17 +169,18 @@ function getExtra() {
 // };
 
 // teamRoster.push(addEmployee).then((answers) => {
-  getExtra();
+  // getExtra();
 
-  document.getElementById("cardContainer") = teamRoster.map(getNewTeamMember);
- function getNewTeamMember() {
-     return [teamRoster.name, teamRoster.role, teamRoster.id, teamRoster.email, teamRoster.extra]
- };
+  // document.getElementById("cardContainer") = teamRoster.map(getNewTeamMember);
+//  function getNewTeamMember() {
+//      return [teamRoster.name, teamRoster.role, teamRoster.id, teamRoster.email, teamRoster.extra]
+//  };
   
 //  generateHtml();
+/// teamRoster = [{role, name,id, email,extra},{},{}]
 
 function startCollectingData() {
-  const newFile = generateHtml(getNewTeamMember);
+  const newFile = generateHtml(teamRoster);
 
   fs.writeFile("./dist/myTeam.html", newFile, function (err) {
     if (err) throw err;
@@ -193,3 +193,4 @@ function startCollectingData() {
 
 
 
+managerQ();
