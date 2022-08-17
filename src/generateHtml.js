@@ -1,7 +1,7 @@
 const Employee = require("../lib/employee");
 
 function generateHtml(getNewTeamMember) {
-  return `
+  return`
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,14 +24,14 @@ function generateHtml(getNewTeamMember) {
     <div id="cardContainer" class="card" style="width: 18rem;">
         
         <div class="card-body">
-           <h1 class="card-title">${getNewTeamMember.name}</h1>
+           <h1 class="card-title">${getNewTeamMember[0]}</h1>
           <p class="card-text"><h4>Employee E-Badge</h4></p>
         </div>
         <ul id="empCard" class="list-group list-group-flush">
-          <li class="list-group-item">${getNewTeamMember.role}</li>
-          <li class="list-group-item">${getNewTeamMember.id}</li>
-          <li class="list-group-item">${getNewTeamMember.email}</li>
-          <li class="list-group-item">${getNewTeamMember.extra}</li>
+          <li class="list-group-item">${getNewTeamMember[1]}</li>
+          <li class="list-group-item">${getNewTeamMember[2]}</li>
+          <li class="list-group-item">${getNewTeamMember[3]}</li>
+          <li class="list-group-item">${getNewTeamMember[4]}</li>
         </ul>
         <div class="card-footer">
             Team Member
