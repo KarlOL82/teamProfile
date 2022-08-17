@@ -1,10 +1,7 @@
 const Employee = require("../lib/employee");
 
-let teamRoster;
-const newTeamMember = teamRoster.map(generateHtml);
-function generateHtml (teamRoster) {
-
-return`
+function generateHtml(getNewTeamMember) {
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +16,7 @@ return`
     <div>
         <div id="header" class="container-fluid">
             <h1>KarlMerica Enterprises</h1>
-            <h4>Where tomorrow becomes today</h4>
+            <h4>Where Tomorrow Becomes Today</h4>
             <h2>Team Roster</h2>
           </div>
     </div>
@@ -27,24 +24,24 @@ return`
     <div id="cardContainer" class="card" style="width: 18rem;">
         
         <div class="card-body">
-           <h1 class="card-title">Name</h1>
+           <h1 class="card-title">${getNewTeamMember.name}</h1>
           <p class="card-text"><h4>Employee E-Badge</h4></p>
         </div>
         <ul id="empCard" class="list-group list-group-flush">
-          <li class="list-group-item">Role</li>
-          <li class="list-group-item">ID</li>
-          <li class="list-group-item">Email</li>
-          <li class="list-group-item">Extra</li>
+          <li class="list-group-item">${getNewTeamMember.role}</li>
+          <li class="list-group-item">${getNewTeamMember.id}</li>
+          <li class="list-group-item">${getNewTeamMember.email}</li>
+          <li class="list-group-item">${getNewTeamMember.extra}</li>
         </ul>
         <div class="card-footer">
             Team Member
           </div>
       </div>
     </div>
+    <script src="/teamProfile/index.js"></script>
+    <script src="./src/generateHtml.js"></script>
 </body>
-</html>
-
-`
-}
+</html>`;
+};
 
 module.exports = generateHtml;

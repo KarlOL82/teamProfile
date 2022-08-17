@@ -139,19 +139,22 @@ function internQ() {
     });
 }
 
-// const generateHtml()
+
 
 function getExtra() {
-  if (getRole === "Engineer") {
-    return getGithub();
+  if (Employee.getRole === "Engineer") {
+    return Engineer.getGithub();
   }
   if (getRole === "Intern") {
-    return getSchool();
+    return Intern.getSchool();
   }
   if (getRole === "Manager") {
-    return getOffice();
-  }
-}
+    return Manager.getOffice();
+  };
+  teamRoster.push(getExtra);
+};
+
+
 // startCollectingData();
 // module.exports = teamRoster[(Employee)];
 // const { name, id, email, role, extra } = answers;
@@ -167,13 +170,26 @@ function getExtra() {
 // };
 
 // teamRoster.push(addEmployee).then((answers) => {
+  getExtra();
+
+  document.getElementById("cardContainer") = teamRoster.map(getNewTeamMember);
+ function getNewTeamMember() {
+     return [teamRoster.name, teamRoster.role, teamRoster.id, teamRoster.email, teamRoster.extra]
+ };
+  
+//  generateHtml();
+
 function startCollectingData() {
-  const newFile = generateHtml(teamRoster);
+  const newFile = generateHtml(getNewTeamMember);
 
   fs.writeFile("./dist/myTeam.html", newFile, function (err) {
     if (err) throw err;
     else console.log("success");
-    // console.log(answers);
+    
   });
-  // });
-}
+  
+  
+};
+
+
+
