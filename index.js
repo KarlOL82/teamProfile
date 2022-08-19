@@ -49,7 +49,7 @@ function managerQ() {
       };
 
       teamRoster.push(addManager);
-      startCollectingData();
+      // startCollectingData();
       promptOtherQues();
     });
 }
@@ -118,9 +118,9 @@ function engineerQ() {
 
       promptOtherQues();
       if (promptOtherQues.answer !== "Engineer" || "Intern") {
-        startCollectingData();
+        // startCollectingData();
       };
-      startCollectingData();
+      // startCollectingData();
     });
 }
 
@@ -165,9 +165,9 @@ function internQ() {
       teamRoster.push(addIntern);
       promptOtherQues();
       if (promptOtherQues.answers !== "Engineer" || "Intern") {
-        startCollectingData();
+        // startCollectingData();
       };
-      startCollectingData();
+      // startCollectingData();
 
     });
 };
