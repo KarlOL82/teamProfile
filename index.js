@@ -79,6 +79,21 @@ function engineerQ() {
   engineerData = inquirer
     .prompt([
       {
+        name: "engineer name",
+        type: "input",
+        message: "What is the employee's name?",
+      },
+      { 
+        name: "engineer id",
+        type: "input",
+        message: "What is the employee's ID number?",
+      },
+      {
+        name: "engineer email",
+        type: "input",
+        message: "What is the employee's email address?",
+      },
+      {
         name: "github",
         type: "input",
         message: "What is the employee's GitHub username?",
@@ -104,13 +119,30 @@ function engineerQ() {
       promptOtherQues();
       if (promptOtherQues.answer !== "Engineer" || "Intern") {
         startCollectingData();
-      }
+      };
+      startCollectingData();
     });
 }
 
 function internQ() {
   internData = inquirer
     .prompt([
+      {
+        name: "intern name",
+        type: "input",
+        message: "What is the employee's name?",
+      },
+      { 
+        name: "intern id",
+        type: "input",
+        message: "What is the employee's ID number?",
+      },
+      {
+        name: "intern email",
+        type: "input",
+        message: "What is the employee's email address?"
+
+      },
       {
         name: "school",
         type: "input",
@@ -134,9 +166,11 @@ function internQ() {
       promptOtherQues();
       if (promptOtherQues.answers !== "Engineer" || "Intern") {
         startCollectingData();
-      }
+      };
+      startCollectingData();
+
     });
-}
+};
 
 
 
@@ -154,30 +188,7 @@ function getExtra() {
 };
 
 
-// startCollectingData();
-// module.exports = teamRoster[(Employee)];
-// const { name, id, email, role, extra } = answers;
-// const employee = new Employee(name, id, email, role, extra);
-// // const role = Employee.getRole();
 
-// const addEmployee = {
-//   role: employee.getRole(),
-//   name: employee.getName(),
-//   id: employee.getId(),
-//   email: employee.getEmail(),
-//   extra: employee.getExtra(),
-// };
-
-// teamRoster.push(addEmployee).then((answers) => {
-  // getExtra();
-
-  // document.getElementById("cardContainer") = teamRoster.map(getNewTeamMember);
-//  function getNewTeamMember() {
-//      return [teamRoster.name, teamRoster.role, teamRoster.id, teamRoster.email, teamRoster.extra]
-//  };
-  
-//  generateHtml();
-/// teamRoster = [{role, name,id, email,extra},{},{}]
 
 function startCollectingData() {
   const newFile = generateHtml(teamRoster);
