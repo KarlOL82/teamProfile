@@ -79,17 +79,17 @@ function engineerQ() {
   engineerData = inquirer
     .prompt([
       {
-        name: "engineer name",
+        name: "name",
         type: "input",
         message: "What is the employee's name?",
       },
       { 
-        name: "engineer id",
+        name: "id",
         type: "input",
         message: "What is the employee's ID number?",
       },
       {
-        name: "engineer email",
+        name: "email",
         type: "input",
         message: "What is the employee's email address?",
       },
@@ -128,17 +128,17 @@ function internQ() {
   internData = inquirer
     .prompt([
       {
-        name: "intern name",
+        name: "name",
         type: "input",
         message: "What is the employee's name?",
       },
       { 
-        name: "intern id",
+        name: "id",
         type: "input",
         message: "What is the employee's ID number?",
       },
       {
-        name: "intern email",
+        name: "email",
         type: "input",
         message: "What is the employee's email address?"
 

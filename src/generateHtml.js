@@ -7,7 +7,8 @@ function addCard(data){
     const arrayOfCards = data.map( function (obj){
 
 return`
-<div class="card-body">
+<div id="cardContainer"></div> 
+<div class="card-body"></div>
 <h1 class="card-title">${obj.name}</h1>
 <p class="card-text"><h4>Employee E-Badge</h4></p>
 <ul id="empCard" class="list-group list-group-flush">
@@ -50,7 +51,7 @@ function generateHtml(teamRoster) {
           </div>
     </div>
 
-    <div id="cardContainer" class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
      ${addCard(teamRoster)}
     </div>
     
