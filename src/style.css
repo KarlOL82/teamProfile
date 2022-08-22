@@ -15,7 +15,7 @@ body {
 }
 
 .card {
-    
+    margin: 10px;
     justify-content:center;
     background-color: yellow;
     padding: 20px;

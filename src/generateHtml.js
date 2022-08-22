@@ -1,15 +1,10 @@
 const Employee = require("../lib/employee");
+// Builds cards using html and bootstrap css with the collected data from index.js
+function addCard(data) {
+  const arrayOfCards = data.map(function (obj) {
+    return `
 
-
-
-function addCard(data){
-   
-    const arrayOfCards = data.map( function (obj){
-
-return`
-<div id="cardContainer">
-    <div class="col">
-        <div class="card">
+        <div class="card col-4">
             <div class="card-body"></div>
             <h1 class="card-title">${obj.name}</h1>
             <p class="card-text"><h4>Employee E-Badge</h4></p>
@@ -19,21 +14,14 @@ return`
                 <li class="list-group-item">${obj.extra}</li>
                 <li class="list-group-item">Title: ${obj.role}</li>
             </ul>
-        </div>
-    </div>    
-</div>
-<div class="card-footer">Team Member</div>`
+        </div>`;
+  });
 
-    }); 
-
-    return arrayOfCards.join("\n");
-
-};
-
-
+  return arrayOfCards.join("\n");
+}
 
 function generateHtml(teamRoster) {
-  return`
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,18 +40,11 @@ function generateHtml(teamRoster) {
             <h2>Team Roster</h2>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-        <div class="card" style="width: 18rem;">
-        ${addCard(teamRoster)}
+    <div id="cardContainer" class="row row-cols-2 row-cols-md-4 g-2">              
+            ${addCard(teamRoster)}       
     </div>
-    </div>
-    
 </body>
 </html>`;
-};
-
-
+}
 
 module.exports = generateHtml;
-
-   

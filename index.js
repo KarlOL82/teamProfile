@@ -6,10 +6,11 @@ const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 
+// Empty array to collect team member data into.
 const teamRoster = [];
 
 
-
+// Initial question cycle to create a manager profile
 function managerQ() {
  inquirer
     .prompt([
@@ -35,7 +36,7 @@ function managerQ() {
       },
     ]).then((answers) => {
       console.log(answers);
-
+      // Builds a manager class employee object
       const { name, id, email, office } = answers;
 
       const manager = new Manager(name, id, email, office);
@@ -47,13 +48,14 @@ function managerQ() {
         email: manager.getEmail(),
         extra: manager.getOffice(),
       };
-
+      // Pushes the manager object into the teamRoster array.
       teamRoster.push(addManager);
-      // startCollectingData();
+      //
       promptOtherQues();
     });
 }
 
+//Prompts the user to continue adding team members or generate the html file if finished
 function promptOtherQues() {
   inquirer
     .prompt([
@@ -71,10 +73,12 @@ function promptOtherQues() {
       if (answers.teamMember === "Intern") {
         internQ();
       } 
+        // calls the function to collect the data to be printed as html
         startCollectingData();
       
     });
 }
+// Prompts the engineer class questions if engineer is selected
 function engineerQ() {
   engineerData = inquirer
     .prompt([
@@ -115,15 +119,15 @@ function engineerQ() {
       };
 
       teamRoster.push(addEngineer);
-
+      // loops back to the function that allows user to add more team members and completes the current team member
       promptOtherQues();
       if (promptOtherQues.answer !== "Engineer" || "Intern") {
-        // startCollectingData();
+        
       };
-      // startCollectingData();
+      
     });
 }
-
+// prompts the intern questions if intern is selected
 function internQ() {
   internData = inquirer
     .prompt([
@@ -161,19 +165,19 @@ function internQ() {
         email: intern.getEmail(),
         extra: intern.getSchool(),
       };
-
+      // builds an intern object and loops back to adding new team members
       teamRoster.push(addIntern);
       promptOtherQues();
       if (promptOtherQues.answers !== "Engineer" || "Intern") {
-        // startCollectingData();
+        
       };
-      // startCollectingData();
+      
 
     });
 };
 
 
-
+// gets the "extra" value that is unique to each subclass
 function getExtra() {
   if (Employee.getRole === "Engineer") {
     return Engineer.getGithub();
@@ -189,7 +193,7 @@ function getExtra() {
 
 
 
-
+// compiles the collected data and begins the sequence to generate the html file
 function startCollectingData() {
   const newFile = generateHtml(teamRoster);
 
