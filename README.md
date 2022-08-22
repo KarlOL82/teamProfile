@@ -13,6 +13,7 @@
   ## Developer Contact
   -klinfeldt@gmail.com  
   -KarlOL82@github.com
+  -[Repo](https://github.com/KarlOL82/teamProfile)
 
 
   ## Overview
@@ -35,6 +36,13 @@
    
  "This application is using license MIT." 
 
+ ## Photos
+ ![Browser View](./images/image3.png "Generated HTML deployed in browser")  
+ ![User Input](./images/image2.png "CLI view of user input.")  
+ ![Tests Passed](./images/image1.png "Snip of all unit tests passing")
+
  
+
+
     
   
