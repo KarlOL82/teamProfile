@@ -9,7 +9,7 @@ describe("Intern", () => {
     });
   });
 
-  describe("getGithub", () => {
+  describe("getSchool", () => {
     it("should return a 'school' string", () => {
       const school = "school";
       const intern = new Intern("Foo", 1, "foo@bar.com", school);
