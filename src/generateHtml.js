@@ -50,11 +50,12 @@ function generateHtml(teamRoster) {
             <h1>KarlMerica Enterprises</h1>
             <h4>Where Tomorrow Becomes Today</h4>
             <h2>Team Roster</h2>
-          </div>
+        </div>
     </div>
-
-    <div class="card" style="width: 18rem;">
-     ${addCard(teamRoster)}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="card" style="width: 18rem;">
+        ${addCard(teamRoster)}
+    </div>
     </div>
     
 </body>
