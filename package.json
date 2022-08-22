@@ -3,5 +3,28 @@
     "fs": "^0.0.1-security",
     "inquirer": "^8.2.4",
     "jest": "^24.9.0"
-  }
+  },
+  "name": "teamprofile",
+  "description": "A javascript application that generates a webpage with basic information about employees and team members.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarlOL82/teamProfile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarlOL82/teamProfile/issues"
+  },
+  "homepage": "https://github.com/KarlOL82/teamProfile#readme"
 }

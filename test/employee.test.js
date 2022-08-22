@@ -36,7 +36,7 @@ describe("Employee", () => {
         it("should return a 'role' string", () => {
             const role = "Employee";
 
-            expect(id).toEqual(getId(answers));
+            expect(role).toEqual(getRole(answers));
 
         });
     });            
