@@ -8,23 +8,21 @@ function addCard(data){
 
 return`
 <div id="cardContainer">
-
+    <div class="col">
+        <div class="card">
+            <div class="card-body"></div>
+            <h1 class="card-title">${obj.name}</h1>
+            <p class="card-text"><h4>Employee E-Badge</h4></p>
+            <ul id="empCard" class="list-group list-group-flush">
+                <li class="list-group-item">email: ${obj.email}</li>
+                <li class="list-group-item">ID: ${obj.id}</li>
+                <li class="list-group-item">${obj.extra}</li>
+                <li class="list-group-item">Title: ${obj.role}</li>
+            </ul>
+        </div>
+    </div>    
 </div>
-    
-    <div class="card">
-        <div class="card-body"></div>
-        <h1 class="card-title">${obj.name}</h1>
-        <p class="card-text"><h4>Employee E-Badge</h4></p>
-        <ul id="empCard" class="list-group list-group-flush">
-            <li class="list-group-item">email: ${obj.email}</li>
-            <li class="list-group-item">ID: ${obj.id}</li>
-            <li class="list-group-item">${obj.extra}</li>
-            <li class="list-group-item">Title: ${obj.role}</li>
-        </ul>
-    </div>
-</div>
-<div class="card-footer">Team Member</div>
-</div>`
+<div class="card-footer">Team Member</div>`
 
     }); 
 
